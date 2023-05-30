@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>League of Legends Quizz</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+  <h1>League of Legends Quizz</h1>
+  
+  <!-- Liste des champions -->
+  <div id="champions">
+    <h2>Liste des champions</h2>
+    <input type="text" id="championSearch" placeholder="Recherche par nom">
+    <!-- Ajoutez ici la div pour afficher la liste des champions -->
+  </div>
+
+  <!-- Liste des compétences -->
+  <div id="competences">
+    <h2>Liste des compétences</h2>
+    <input type="text" id="competenceSearch" placeholder="Recherche par nom de compétence">
+    <!-- Ajoutez ici la div pour afficher la liste des compétences -->
+  </div>
+
+  <!-- Liste des items -->
+  <div id="items">
+    <h2>Liste des items</h2>
+    <input type="text" id="itemSearch" placeholder="Recherche par nom d'item">
+    <!-- Ajoutez ici la div pour afficher la liste des items -->
+  </div>
+
+  <!-- Mode champion -->
+  <div id="championMode">
+    <h2>Mode champion</h2>
+    <input type="text" id="championGuess" placeholder="Devinez le champion">
+    <button onclick="checkChampionGuess()">Valider</button>
+    <p id="championResult"></p>
+    <p id="championScore">Score: 0</p>
+  </div>
+
+  <!-- Mode compétence -->
+  <div id="competenceMode">
+    <h2>Mode compétence</h2>
+    <input type="text" id="competenceGuess" placeholder="Devinez la compétence">
+    <button onclick="checkCompetenceGuess()">Valider</button>
+    <p id="competenceResult"></p>
+    <p id="competenceScore">Score: 0</p>
+  </div>
+
+  <!-- Mode items -->
+  <div id="itemMode">
+    <h2>Mode items</h2>
+    <input type="text" id="itemGuess" placeholder="Devinez l'item">
+    <button onclick="checkItemGuess()">Valider</button>
+    <p id="itemResult"></p>
+    <p id="itemScore">Score: 0</p>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
