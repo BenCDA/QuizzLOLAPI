@@ -45,3 +45,26 @@
   left: 0;
   right: 0;
 }
+
+/* Style pour la section des détails du champion */
+#champion-details {
+  display: none;
+  margin-top: 30px;
+}
+
+#champion-details h2 {
+  margin-top: 0;
+}
+
+#champion-details img {
+  max-height: 300px;
+}
+
+#champion-details canvas {
+  max-width: 400px;
+  max-height: 300px;
+}
+
+/* canvas {
+
+} */
