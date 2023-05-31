@@ -1,3 +1,7 @@
+/* body {
+  background-image: url();
+} */
+
 /* Grille pour afficher les champions */
 .champion-grid {
   display: grid;

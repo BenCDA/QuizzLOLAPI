@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const statsValues = Object.values(championData.stats);
   
       new Chart(statsChart, {
-        type: 'bar',
+        type: 'line',
         data: {
           labels: statsLabels,
           datasets: [{
