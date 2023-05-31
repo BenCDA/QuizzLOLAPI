@@ -97,5 +97,8 @@ document.addEventListener('DOMContentLoaded', () => {
             createChampionElements();
           });
       });
+
+      
+
   });
   

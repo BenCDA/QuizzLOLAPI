@@ -1,6 +1,16 @@
-/* body {
-  background-image: url();
-} */
+/* Import font used by Riot  */
+/* You can find fonts here ; https://brand.riotgames.com/fr-fr/league-of-legends/typography */
+@font-face {
+  font-family: "Beaufort";
+  src: url(/Fonts_Package/BeaufortForLoL-TTF/BeaufortforLOL-Regular.ttf);
+}
+
+@import url(/Fonts_Package/BeaufortForLoL-TTF/BeaufortforLOL-Regular.ttf);
+
+body {
+  background-color: #091428;
+  color: #C89B3C;
+}
 
 /* Grille pour afficher les champions */
 .champion-grid {
@@ -41,8 +51,8 @@
 .champion h3 {
   padding: 10px;
   margin: 0;
-  background-color: rgba(0, 0, 0, 0.8);
-  color: white;
+  background-color: #091428;
+  color: #C89B3C;
   font-size: 16px;
   position: absolute;
   bottom: 0;
