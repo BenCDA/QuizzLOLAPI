@@ -1,0 +1,21 @@
+@font-face {
+    font-family: "Spiegel";
+    src: url(/Fonts_Package/Spiegel-TTF/Spiegel_TT_Regular.ttf);
+}
+
+@import url(/Fonts_Package/Spiegel-TTF/Spiegel_TT_Regular.ttf);
+
+body {
+    background-color: #091428;
+    color: #C89B3C;
+    font-family: 'Spiegel', sans-serif;
+}
+
+nav {
+    display: flex;
+    flex-direction: column;
+}
+
+.logo {
+    width: 450px;
+}
