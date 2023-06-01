@@ -3,10 +3,12 @@ document.addEventListener('DOMContentLoaded', () => {
   const searchInput = document.getElementById('search-input');
   const championList = document.getElementById('champion-list');
   const championDetails = document.getElementById('champion-details');
+  const championModal = document.getElementById('champion-modal');
   const championName = document.getElementById('champion-name');
   const championImage = document.getElementById('champion-image');
   const championSkills = document.getElementById('champion-skills');
   const championStats = document.getElementById('champion-stats');
+  const closeButton = document.getElementsByClassName('close')[0];
 
   let champions = [];
 
@@ -56,7 +58,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
-    championDetails.style.display = 'block'; // Show champion details
+    championModal.style.display = 'block'; // Show champion details
   };
 
   // Function to create champion elements and attach event listeners
@@ -102,6 +104,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const searchTerm = event.target.value;
     filterChampions(searchTerm);
   });
+
+  // Close the modal
+  closeButton.onclick = () => {
+    championModal.style.display = 'none';
+  };
 
   // Load champions from Riot API
   fetch('https://ddragon.leagueoflegends.com/api/versions.json')

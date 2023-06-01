@@ -11,11 +11,14 @@
   <input type="text" id="search-input" placeholder="Rechercher un champion">
   <button id="search-button">Rechercher</button>
   <div id="champion-list" class="champion-grid"></div>
-  <div id="champion-details">
-    <h2 id="champion-name"></h2>
-    <img id="champion-image" src="" alt="Champion Image">
-    <div id="champion-skills"></div>
-    <div id="champion-stats"></div>
+  <div id="champion-modal" class="modal">
+    <div id="champion-details" class="modal-content">
+      <span class="close">&times;</span>
+      <h2 id="champion-name"></h2>
+      <img id="champion-image" src="" alt="Champion Image">
+      <div id="champion-skills"></div>
+      <div id="champion-stats"></div>
+    </div>
   </div>
   <script defer src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script defer src="script.js"></script>
