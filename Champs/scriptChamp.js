@@ -220,8 +220,8 @@ document.addEventListener('DOMContentLoaded', () => {
         <img class="champion-image" src="https://ddragon.leagueoflegends.com/cdn/11.11.1/img/champion/${champion.image.full}" alt="Champion Image">
         <h3 class="champion-name">${champion.name}</h3>
       `;
-      championElement.style.width = '180px'; // Set the width of champion element
-      championElement.style.height = '220px'; // Set the height of champion element
+      championElement.style.width = '180px'; 
+      championElement.style.height = '220px'; 
       championList.appendChild(championElement);
 
       // Add click event listener to champion element
