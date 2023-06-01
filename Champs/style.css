@@ -65,10 +65,13 @@ h1 {
 .champion {
   position: relative;
   overflow: hidden;
+  width: 180px; /* Largeur souhaitée pour chaque case de champion */
+  height: 220px; /* Hauteur souhaitée pour chaque case de champion */
   border-radius: 10px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
   transition: transform 0.3s ease;
 }
+
 
 /* Effet de zoom au survol */
 .champion:hover {
