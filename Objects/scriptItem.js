@@ -1,9 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     // Create our variables
     const searchInput = document.getElementById('search-input');
-    const searchSkillInput = document.getElementById('search-skill-input');
-    const searchLoreInput = document.getElementById('search-lore-input');
-    const searchTypeInput = document.getElementById('search-type-input');
     const itemList = document.getElementById('item-list');
     const itemDetails = document.getElementById('item-details');
     const itemName = document.getElementById('item-name');

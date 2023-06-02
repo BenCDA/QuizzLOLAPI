@@ -1,20 +1,46 @@
 <!DOCTYPE html>
 <html lang="fr">
-<head>
+  <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LOL spells</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-      <!-- Liste des compétences -->
-  <div id="competences">
-    <h2>Liste des compétences</h2>
-    <input type="text" id="competenceSearch" placeholder="Recherche par nom de compétence">
-    <!-- Ajoutez ici la div pour afficher la liste des compétences -->
-  </div>
+    <title>League of Legends - Liste des sorts</title>
+    <link rel="stylesheet" href="styleSpell.css">
+  </head>
 
-    <script defer src="script.js"></script>
-</body>
+  <body>
+    <nav class="navbar">
+      <ul class="navbar-nav">
+        <li class="nav-item"><a class="nav-link" href="/Homepage/index.html">Accueil</a></li>
+        <li class="nav-item"><a class="nav-link" href="/Champs/indexChamp.html">Champions</a></li>
+        <li class="nav-item"><a class="nav-link" href="/Spells/indexSpell.html">Sorts</a></li>
+        <li class="nav-item"><a class="nav-link" href="/Objects/indexItem.html">Objets</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Quizz</a></li>
+      </ul>
+    </nav>
+
+    <h1>Liste des sorts</h1>
+    <input type="text" id="search-input" placeholder="Rechercher un sort">
+    <button id="search-button">Rechercher</button>
+    <div id="item-list" class="item-grid"></div>
+
+    <div id="spell-details">
+      <h2 id="spell-name"></h2>
+      <img id="spell-details-image" src="" alt="sort Image">
+      <div id="spell-skills"></div>
+      <div id="spell-stats"></div>
+    </div>
+
+    <div id="spell-modal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2 id="spell-modal-name"></h2>
+        <img id="spell-modal-image" src="" alt="sort Image">
+        <div id="spell-modal-skills"></div>
+        <div id="spell-modal-stats"></div>
+      </div>
+    </div>
+
+    <script defer src="scriptSpell.js"></script>
+  </body>
 </html>
