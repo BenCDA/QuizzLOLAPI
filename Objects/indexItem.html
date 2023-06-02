@@ -1,46 +1,47 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>League of Legends - Liste des champions</title>
+    <link rel="stylesheet" href="styleItem.css">
+  </head>
 
-<head>
-  <title>League of Legends - Liste des champions</title>
-  <link rel="stylesheet" href="style.css">
-</head>
+  <body>
+    <nav class="navbar">
+      <ul class="navbar-nav">
+        <li class="nav-item"><a class="nav-link" href="../Homepage/index.html">Accueil</a></li>
+        <li class="nav-item"><a class="nav-link" href="indexChamp.html">Champions</a></li>
+        <li class="nav-item"><a class="nav-link" href="../Spells/indexSpell.html">Sorts</a></li>
+        <li class="nav-item"><a class="nav-link" href="../Objects/indexItem.html">Objets</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Quizz</a></li>
+      </ul>
+    </nav>
 
-<body>
-  <nav class="navbar">
-    <ul class="navbar-nav">
-      <li class="nav-item"><a class="nav-link" href="#">Accueil</a></li>
-      <li class="nav-item"><a class="nav-link" href="#">Champions</a></li>
-      <li class="nav-item"><a class="nav-link" href="#">Sorts</a></li>
-      <li class="nav-item"><a class="nav-link" href="#">Objets</a></li>
-      <li class="nav-item"><a class="nav-link" href="#">Quizz</a></li>
-    </ul>
-  </nav>
+    <h1>Liste des item</h1>
+    <input type="text" id="search-input" placeholder="Rechercher un item">
+    <button id="search-button">Rechercher</button>
+    <div id="item-list" class="item-grid"></div>
 
-  <h1>Liste des champions</h1>
-  <input type="text" id="search-input" placeholder="Rechercher un champion">
-  <button id="search-button">Rechercher</button>
-  <div id="champion-list" class="champion-grid"></div>
-
-  <div id="skill-details">
-    <h2 id="skill-name"></h2>
-    <img id="skill-details-image" src="" alt="Champion Image">
-    <div id="skill-skills"></div>
-    <div id="skill-stats"></div>
-  </div>
-
-  <div id="skill-modal" class="modal">
-    <div class="modal-content">
-      <span class="close">&times;</span>
-      <h2 id="skill-modal-name"></h2>
-      <img id="skill-modal-image" src="" alt="Champion Image">
-      <div id="skill-modal-skills"></div>
-      <div id="skill-modal-stats"></div>
+    <div id="item-details">
+      <h2 id="item-name"></h2>
+      <img id="item-details-image" src="" alt="item Image">
+      <div id="item-skills"></div>
+      <div id="item-stats"></div>
     </div>
-  </div>
 
-  <script defer src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <script defer src="script.js"></script>
-</body>
+    <div id="item-modal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2 id="item-modal-name"></h2>
+        <img id="item-modal-image" src="" alt="item Image">
+        <div id="item-modal-skills"></div>
+        <div id="item-modal-stats"></div>
+      </div>
+    </div>
 
+    <script defer src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script defer src="scriptItem.js"></script>
+  </body>
 </html>
