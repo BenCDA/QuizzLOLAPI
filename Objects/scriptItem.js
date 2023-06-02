@@ -16,61 +16,95 @@ document.addEventListener('DOMContentLoaded', () => {
     const itemModalSkills = document.getElementById('item-modal-skills');
     const itemModalStats = document.getElementById('item-modal-stats');
     const closeBtn = document.getElementsByClassName('close')[0];
-
+  
     let items = [];
-
+  
+    // Function to display item details in modal
+    const displayItemDetails = (itemData) => {
+      itemModalName.textContent = itemData.name;
+      itemModalImage.src = `https://ddragon.leagueoflegends.com/cdn/13.10.1/img/item/${itemData.image.full}`;
+  
+      // Clear previous skills and stats
+      itemModalSkills.innerHTML = '';
+      itemModalStats.innerHTML = '';
+  
+      if (itemData.description) {
+        const itemDescription = document.createElement('p');
+        itemDescription.textContent = itemData.description;
+        itemModalSkills.appendChild(itemDescription);
+      }
+  
+      if (itemData.stats) {
+        const itemStatsList = document.createElement('ul');
+        for (const stat in itemData.stats) {
+          const statItem = document.createElement('li');
+          statItem.textContent = `${stat}: ${itemData.stats[stat]}`;
+          itemStatsList.appendChild(statItem);
+        }
+        itemModalStats.appendChild(itemStatsList);
+      }
+  
+      itemModal.style.display = 'block'; // Show item modal
+    };
+  
+    // Function to close the item modal
+    const closeModal = () => {
+      itemModal.style.display = 'none';
+    };
+  
+    // Event listener for the close button
+    closeBtn.addEventListener('click', closeModal);
+  
     // Fetch items data from the API
     fetch('https://ddragon.leagueoflegends.com/cdn/13.10.1/data/fr_FR/item.json')
-    .then(response => response.json())
-    .then(data => {
+      .then(response => response.json())
+      .then(data => {
         items = Object.values(data.data);
-
+  
         // Display items in the sidebar
         itemList.innerHTML = '';
         items.forEach(item => {
-            const itemElement = document.createElement('div');
-            itemElement.classList.add('item');
-            itemElement.innerHTML = `
-                <img class="item-image" src="https://ddragon.leagueoflegends.com/cdn/13.10.1/img/item/${item.image.full}" alt="item image">
-                <h3 class="item-name">${item.name}</h3>
-            `;
-            itemList.appendChild(itemElement);
-
-            // Add click event listener to item element
-            itemElement.addEventListener('click', () => {
-                displayItemDetails(item);
-            });
+          const itemElement = document.createElement('div');
+          itemElement.classList.add('item');
+          itemElement.innerHTML = `
+            <img class="item-image" src="https://ddragon.leagueoflegends.com/cdn/13.10.1/img/item/${item.image.full}" alt="Item Image">
+            <h3 class="item-name">${item.name}</h3>
+          `;
+          itemList.appendChild(itemElement);
+  
+          // Add click event listener to item element
+          itemElement.addEventListener('click', () => {
+            displayItemDetails(item);
+          });
         });
-    });
-
-    // Display item details
-    function displayItemDetails(item) {
-        itemName.textContent = item.name;
-        itemDetailsImage.src = `https://ddragon.leagueoflegends.com/cdn/13.10.1/img/item/${item.image.full}`;
-
-        // Clear previous item details
-        itemSkills.innerHTML = '';
-        itemStats.innerHTML = '';
-
-        // Display item skills
-        if (item.description) {
-            const itemDescription = document.createElement('p');
-            itemDescription.textContent = item.description;
-            itemSkills.appendChild(itemDescription);
-        }
-
-        // Display item stats
-        if (item.stats) {
-            const itemStatsList = document.createElement('ul');
-            for (const stat in item.stats) {
-                const statItem = document.createElement('li');
-                statItem.textContent = `${stat}: ${item.stats[stat]}`;
-                itemStatsList.appendChild(statItem);
-            }
-            itemStats.appendChild(itemStatsList);
-        }
-
-        // Show item details
-        itemDetails.style.display = 'block';
-    }
-});
+      });
+  
+    // Function to filter and display items based on search input
+    const filterItems = () => {
+      const searchValue = searchInput.value.toLowerCase();
+      const filteredItems = items.filter(item =>
+        item.name.toLowerCase().includes(searchValue)
+      );
+  
+      // Display filtered items in the sidebar
+      itemList.innerHTML = '';
+      filteredItems.forEach(item => {
+        const itemElement = document.createElement('div');
+        itemElement.classList.add('item');
+        itemElement.innerHTML = `
+          <img class="item-image" src="https://ddragon.leagueoflegends.com/cdn/13.10.1/img/item/${item.image.full}" alt="Item Image">
+          <h3 class="item-name">${item.name}</h3>
+        `;
+        itemList.appendChild(itemElement);
+  
+        // Add click event listener to item element
+        itemElement.addEventListener('click', () => {
+          displayItemDetails(item);
+        });
+      });
+    };
+  
+    // Event listener for search input
+    searchInput.addEventListener('input', filterItems);
+  });
+  
