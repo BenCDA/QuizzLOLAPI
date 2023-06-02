@@ -1,6 +1,9 @@
 document.addEventListener('DOMContentLoaded', () => {
   // Create our variables
   const searchInput = document.getElementById('search-input');
+  const searchSkillInput = document.getElementById('search-skill-input');
+  const searchLoreInput = document.getElementById('search-lore-input');
+  const searchTypeInput = document.getElementById('search-type-input');
   const championList = document.getElementById('champion-list');
   const championDetails = document.getElementById('champion-details');
   const championName = document.getElementById('champion-name');
@@ -173,6 +176,98 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   };
 
+  // Function to filter and display champions based on search input for skills
+  const filterChampionsBySkill = () => {
+    const searchSkillValue = searchSkillInput.value.toLowerCase();
+    const filteredChampions = champions.filter(champion =>
+      champion.spells.some(spell =>
+        spell.name.toLowerCase().includes(searchSkillValue)
+      )
+    );
+
+    // Display filtered champions in the sidebar
+    championList.innerHTML = '';
+    filteredChampions.forEach(champion => {
+      const championElement = document.createElement('div');
+      championElement.classList.add('champion');
+      championElement.innerHTML = `
+        <img class="champion-image" src="https://ddragon.leagueoflegends.com/cdn/11.11.1/img/champion/${champion.image.full}" alt="Champion Image">
+        <h3 class="champion-name">${champion.name}</h3>
+      `;
+      championElement.style.width = '180px'; // Set the width of champion element
+      championElement.style.height = '220px'; // Set the height of champion element
+      championList.appendChild(championElement);
+
+      // Add click event listener to champion element
+      championElement.addEventListener('click', () => {
+        displayChampionDetails(champion);
+      });
+    });
+  };
+
+  // Function to filter and display champions based on search input for lore
+  const filterChampionsByLore = () => {
+    const searchLoreValue = searchLoreInput.value.toLowerCase();
+    const filteredChampions = champions.filter(champion =>
+      champion.lore.toLowerCase().includes(searchLoreValue)
+    );
+
+    // Display filtered champions in the sidebar
+    championList.innerHTML = '';
+    filteredChampions.forEach(champion => {
+      const championElement = document.createElement('div');
+      championElement.classList.add('champion');
+      championElement.innerHTML = `
+        <img class="champion-image" src="https://ddragon.leagueoflegends.com/cdn/11.11.1/img/champion/${champion.image.full}" alt="Champion Image">
+        <h3 class="champion-name">${champion.name}</h3>
+      `;
+      championElement.style.width = '180px'; 
+      championElement.style.height = '220px'; 
+      championList.appendChild(championElement);
+
+      // Add click event listener to champion element
+      championElement.addEventListener('click', () => {
+        displayChampionDetails(champion);
+      });
+    });
+  };
+
   // Search champion event listener
   searchInput.addEventListener('input', filterChampions);
+
+  // Search champion by skill event listener
+  searchSkillInput.addEventListener('input', filterChampionsBySkill);
+
+  // Search champion by lore event listener
+  searchLoreInput.addEventListener('input', filterChampionsByLore);
+
+  // Function to filter and display champions based on search input for type
+  const filterChampionsByType = () => {
+    const searchTypeValue = searchTypeInput.value.toLowerCase();
+    const filteredChampions = champions.filter(champion =>
+      champion.tags.includes(searchTypeValue)
+    );
+
+    // Display filtered champions in the sidebar
+    championList.innerHTML = '';
+    filteredChampions.forEach(champion => {
+      const championElement = document.createElement('div');
+      championElement.classList.add('champion');
+      championElement.innerHTML = `
+        <img class="champion-image" src="https://ddragon.leagueoflegends.com/cdn/11.11.1/img/champion/${champion.image.full}" alt="Champion Image">
+        <h3 class="champion-name">${champion.name}</h3>
+      `;
+      championElement.style.width = '180px'; // Set the width of champion element
+      championElement.style.height = '220px'; // Set the height of champion element
+      championList.appendChild(championElement);
+
+      // Add click event listener to champion element
+      championElement.addEventListener('click', () => {
+        displayChampionDetails(champion);
+      });
+    });
+  };
+
+  // Search champion by type event listener
+  searchTypeInput.addEventListener('input', filterChampionsByType);
 });
