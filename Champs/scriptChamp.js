@@ -85,15 +85,10 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
 
-    const statsChart = document.createElement('canvas');
-    statsChart.width = 400;
-    statsChart.height = 400;
-    championStats.appendChild(statsChart);
-
     const statsLabels = Object.keys(championData.stats);
     const statsValues = Object.values(championData.stats);
 
-    new Chart(statsChart, {
+    new Chart(championStats, {
       type: 'line',
       data: {
         labels: statsLabels,
@@ -113,15 +108,102 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       }
     });
+
+    championDetails.style.display = 'block'; // Show champion details in sidebar
   };
 
-  // Function to close the champion modal
-  const closeModal = () => {
+  // Function to filter champions by name
+  const filterChampionsByName = () => {
+    const searchValue = searchInput.value.toLowerCase();
+    const filteredChampions = champions.filter(champion =>
+      champion.name.toLowerCase().includes(searchValue)
+    );
+
+    championList.innerHTML = ''; // Clear champion list
+
+    filteredChampions.forEach(champion => {
+      const championElement = document.createElement('div');
+      championElement.classList.add('champion');
+      championElement.innerHTML = `<img src="https://ddragon.leagueoflegends.com/cdn/img/champion/loading/${champion.id}_0.jpg" alt="${champion.name}" class="champion-image">
+                                   <div class="champion-name">${champion.name}</div>`;
+      championList.appendChild(championElement);
+
+      championElement.addEventListener('click', () => {
+        displayChampionDetails(champion);
+      });
+    });
+  };
+
+  // Function to filter champions by skill name
+  const filterChampionsBySkill = () => {
+    const searchValue = searchSkillInput.value.toLowerCase();
+    const filteredChampions = champions.filter(champion =>
+      champion.spells.some(spell => spell.name.toLowerCase().includes(searchValue))
+    );
+
+    championList.innerHTML = ''; // Clear champion list
+
+    filteredChampions.forEach(champion => {
+      const championElement = document.createElement('div');
+      championElement.classList.add('champion');
+      championElement.innerHTML = `<img src="https://ddragon.leagueoflegends.com/cdn/img/champion/loading/${champion.id}_0.jpg" alt="${champion.name}" class="champion-image">
+                                   <div class="champion-name">${champion.name}</div>`;
+      championList.appendChild(championElement);
+
+      championElement.addEventListener('click', () => {
+        displayChampionDetails(champion);
+      });
+    });
+  };
+
+  // Function to filter champions by lore
+  const filterChampionsByLore = () => {
+    const searchValue = searchLoreInput.value.toLowerCase();
+    const filteredChampions = champions.filter(champion =>
+      champion.lore.toLowerCase().includes(searchValue)
+    );
+
+    championList.innerHTML = ''; // Clear champion list
+
+    filteredChampions.forEach(champion => {
+      const championElement = document.createElement('div');
+      championElement.classList.add('champion');
+      championElement.innerHTML = `<img src="https://ddragon.leagueoflegends.com/cdn/img/champion/loading/${champion.id}_0.jpg" alt="${champion.name}" class="champion-image">
+                                   <div class="champion-name">${champion.name}</div>`;
+      championList.appendChild(championElement);
+
+      championElement.addEventListener('click', () => {
+        displayChampionDetails(champion);
+      });
+    });
+  };
+
+  // Function to filter champions by type
+  const filterChampionsByType = () => {
+    const searchValue = searchTypeInput.value.toLowerCase();
+    const filteredChampions = champions.filter(champion =>
+      champion.tags.some(tag => tag.toLowerCase().includes(searchValue))
+    );
+
+    championList.innerHTML = ''; // Clear champion list
+
+    filteredChampions.forEach(champion => {
+      const championElement = document.createElement('div');
+      championElement.classList.add('champion');
+      championElement.innerHTML = `<img src="https://ddragon.leagueoflegends.com/cdn/img/champion/loading/${champion.id}_0.jpg" alt="${champion.name}" class="champion-image">
+                                   <div class="champion-name">${champion.name}</div>`;
+      championList.appendChild(championElement);
+
+      championElement.addEventListener('click', () => {
+        displayChampionDetails(champion);
+      });
+    });
+  };
+
+  // Close the champion modal when the close button is clicked
+  closeBtn.addEventListener('click', () => {
     championModal.style.display = 'none';
-  };
-
-  // Event listener for the close button
-  closeBtn.addEventListener('click', closeModal);
+  });
 
   // Fetch champion data from the API
   fetch('https://ddragon.leagueoflegends.com/cdn/11.11.1/data/en_US/champion.json')
@@ -129,145 +211,23 @@ document.addEventListener('DOMContentLoaded', () => {
     .then(data => {
       champions = Object.values(data.data);
 
-      // Display champions in the sidebar
-      championList.innerHTML = '';
+      // Display all champions by default
       champions.forEach(champion => {
         const championElement = document.createElement('div');
         championElement.classList.add('champion');
-        championElement.innerHTML = `
-          <img class="champion-image" src="https://ddragon.leagueoflegends.com/cdn/11.11.1/img/champion/${champion.image.full}" alt="Champion Image">
-          <h3 class="champion-name">${champion.name}</h3>
-        `;
-        championElement.style.width = '180px'; // Set the width of champion element
-        championElement.style.height = '220px'; // Set the height of champion element
+        championElement.innerHTML = `<img src="https://ddragon.leagueoflegends.com/cdn/img/champion/loading/${champion.id}_0.jpg" alt="${champion.name}" class="champion-image">
+                                     <div class="champion-name">${champion.name}</div>`;
         championList.appendChild(championElement);
 
-        // Add click event listener to champion element
         championElement.addEventListener('click', () => {
           displayChampionDetails(champion);
         });
       });
     });
 
-  // Function to filter and display champions based on search input
-  const filterChampions = () => {
-    const searchValue = searchInput.value.toLowerCase();
-    const filteredChampions = champions.filter(champion =>
-      champion.name.toLowerCase().includes(searchValue)
-    );
-
-    // Display filtered champions in the sidebar
-    championList.innerHTML = '';
-    filteredChampions.forEach(champion => {
-      const championElement = document.createElement('div');
-      championElement.classList.add('champion');
-      championElement.innerHTML = `
-        <img class="champion-image" src="https://ddragon.leagueoflegends.com/cdn/11.11.1/img/champion/${champion.image.full}" alt="Champion Image">
-        <h3 class="champion-name">${champion.name}</h3>
-      `;
-      championElement.style.width = '180px'; // Set the width of champion element
-      championElement.style.height = '220px'; // Set the height of champion element
-      championList.appendChild(championElement);
-
-      // Add click event listener to champion element
-      championElement.addEventListener('click', () => {
-        displayChampionDetails(champion);
-      });
-    });
-  };
-
-  // Function to filter and display champions based on search input for skills
-  const filterChampionsBySkill = () => {
-    const searchSkillValue = searchSkillInput.value.toLowerCase();
-    const filteredChampions = champions.filter(champion =>
-      champion.spells.some(spell =>
-        spell.name.toLowerCase().includes(searchSkillValue)
-      )
-    );
-
-    // Display filtered champions in the sidebar
-    championList.innerHTML = '';
-    filteredChampions.forEach(champion => {
-      const championElement = document.createElement('div');
-      championElement.classList.add('champion');
-      championElement.innerHTML = `
-        <img class="champion-image" src="https://ddragon.leagueoflegends.com/cdn/11.11.1/img/champion/${champion.image.full}" alt="Champion Image">
-        <h3 class="champion-name">${champion.name}</h3>
-      `;
-      championElement.style.width = '180px'; // Set the width of champion element
-      championElement.style.height = '220px'; // Set the height of champion element
-      championList.appendChild(championElement);
-
-      // Add click event listener to champion element
-      championElement.addEventListener('click', () => {
-        displayChampionDetails(champion);
-      });
-    });
-  };
-
-  // Function to filter and display champions based on search input for lore
-  const filterChampionsByLore = () => {
-    const searchLoreValue = searchLoreInput.value.toLowerCase();
-    const filteredChampions = champions.filter(champion =>
-      champion.lore.toLowerCase().includes(searchLoreValue)
-    );
-
-    // Display filtered champions in the sidebar
-    championList.innerHTML = '';
-    filteredChampions.forEach(champion => {
-      const championElement = document.createElement('div');
-      championElement.classList.add('champion');
-      championElement.innerHTML = `
-        <img class="champion-image" src="https://ddragon.leagueoflegends.com/cdn/11.11.1/img/champion/${champion.image.full}" alt="Champion Image">
-        <h3 class="champion-name">${champion.name}</h3>
-      `;
-      championElement.style.width = '180px'; 
-      championElement.style.height = '220px'; 
-      championList.appendChild(championElement);
-
-      // Add click event listener to champion element
-      championElement.addEventListener('click', () => {
-        displayChampionDetails(champion);
-      });
-    });
-  };
-
-  // Search champion event listener
-  searchInput.addEventListener('input', filterChampions);
-
-  // Search champion by skill event listener
+  // Event listeners for search inputs
+  searchInput.addEventListener('input', filterChampionsByName);
   searchSkillInput.addEventListener('input', filterChampionsBySkill);
-
-  // Search champion by lore event listener
   searchLoreInput.addEventListener('input', filterChampionsByLore);
-
-  // Function to filter and display champions based on search input for type
-  const filterChampionsByType = () => {
-    const searchTypeValue = searchTypeInput.value.toLowerCase();
-    const filteredChampions = champions.filter(champion =>
-      champion.tags.includes(searchTypeValue)
-    );
-
-    // Display filtered champions in the sidebar
-    championList.innerHTML = '';
-    filteredChampions.forEach(champion => {
-      const championElement = document.createElement('div');
-      championElement.classList.add('champion');
-      championElement.innerHTML = `
-        <img class="champion-image" src="https://ddragon.leagueoflegends.com/cdn/11.11.1/img/champion/${champion.image.full}" alt="Champion Image">
-        <h3 class="champion-name">${champion.name}</h3>
-      `;
-      championElement.style.width = '180px'; // Set the width of champion element
-      championElement.style.height = '220px'; // Set the height of champion element
-      championList.appendChild(championElement);
-
-      // Add click event listener to champion element
-      championElement.addEventListener('click', () => {
-        displayChampionDetails(champion);
-      });
-    });
-  };
-
-  // Search champion by type event listener
   searchTypeInput.addEventListener('input', filterChampionsByType);
 });
